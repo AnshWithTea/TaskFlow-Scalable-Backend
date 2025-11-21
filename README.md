@@ -1,246 +1,76 @@
-⚡ TaskFlow - Scalable Task Management System
+# TaskFlow - Scalable Backend 🚀
 
-TaskFlow is a secure, scalable, full-stack MERN application designed to handle task management with robust authentication and role-based access control. Built with a modular MVC architecture, it is engineered for performance, security, and easy scalability.
+![Node.js](https://img.shields.io/badge/Node.js-V18+-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-4.x-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-6.0+-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-Caching-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-🚀 Live Demo
+## 📖 Introduction
 
-Component
+**TaskFlow-Scalable-Backend** is a high-performance, production-ready RESTful API designed to power the TaskFlow application. Built with a focus on **scalability**, **security**, and **maintainability**, this backend leverages the power of Node.js and MongoDB, enhanced with Redis for caching and Docker for containerization.
 
-Status
+It is architected to handle high concurrent loads using Node.js clustering and follows the **Model-View-Controller-Service (MVCS)** pattern to ensure clean code separation and business logic isolation.
 
-URL
+---
 
-Frontend UI
+## ✨ Key Features
 
-🟢 Live
+### 🔐 **Authentication & Security**
+- **JWT Authentication**: Secure stateless authentication using JSON Web Tokens.
+- **Role-Based Access Control (RBAC)**: distinct permissions for Users and Admins.
+- **Password Hashing**: Bcrypt encryption for user credentials.
+- **Rate Limiting**: Protection against Brute-Force and DDoS attacks using `express-rate-limit`.
+- **Security Headers**: Implemented via `helmet` to secure HTTP headers.
 
-Click to View App (Vercel)
+### ⚡ **Performance & Scalability**
+- **Redis Caching**: Implemented caching strategies for frequently accessed data (e.g., task feeds) to reduce database load.
+- **Clustering**: Utilizes Node.js built-in cluster module to spawn worker processes across all available CPU cores.
+- **Database Indexing**: Optimized MongoDB queries with proper compound indexing.
+- **Pagination & Filtering**: API features cursor-based/offset-based pagination for large datasets.
 
-Backend API
+### 🛠 **Core Functionality**
+- **Task Management**: Full CRUD operations for tasks with priorities, due dates, and status tracking.
+- **Input Validation**: Robust request validation using `Joi` / `Zod` middleware.
+- **Centralized Error Handling**: Custom error classes and global error handling middleware.
+- **Logging**: Structured logging with `Winston` and HTTP request logging with `Morgan`.
 
-🟢 Live
+---
 
-API Health Check (Render)
+## 🏗 Tech Stack
 
-(Note: The backend is hosted on a free instance and may take 30-60 seconds to spin up on the first request.)
+| Category | Technology |
+|----------|------------|
+| **Runtime** | Node.js (v18+) |
+| **Framework** | Express.js |
+| **Database** | MongoDB (Mongoose ODM) |
+| **Caching** | Redis |
+| **Containerization** | Docker & Docker Compose |
+| **Authentication** | JWT (JSON Web Tokens) |
+| **Validation** | Joi / Zod |
+| **Logging** | Winston, Morgan |
+| **Testing** | Jest, Supertest |
 
-🔑 Key Features
+---
 
-🔐 Secure Authentication: Stateless JWT (JSON Web Token) authentication with bcryptjs for password hashing.
+## 📂 Architecture & Directory Structure
 
-🛡️ Role-Based Access Control (RBAC):
+The project follows a modular **MVC + Service** architecture:
 
-Users: Can Create, Read, Update, and Delete their own tasks.
-
-Admins: Have elevated privileges to manage all system data.
-
-📝 Full CRUD Operations: Create, Read, Update, and Delete functionality with real-time UI updates.
-
-🏗️ Scalable Architecture:
-
-MVC Pattern: Separation of concerns (Models, Views, Controllers).
-
-Service Layer: Business logic is decoupled from controllers for better maintainability.
-
-🎨 Modern UI: Responsive, dark-themed dashboard built with React + Vite and CSS modules.
-
-☁️ Cloud Native: Database hosted on MongoDB Atlas; Backend on Render; Frontend on Vercel.
-
-🛠️ Tech Stack
-
-Backend
-
-Runtime: Node.js
-
-Framework: Express.js
-
-Database: MongoDB (Atlas) with Mongoose ODM
-
-Security: Helmet, CORS, Dotenv, Joi (Validation)
-
-Auth: JSONWebToken (JWT), Bcryptjs
-
-Frontend
-
-Framework: React.js (Vite)
-
-HTTP Client: Axios (with Interceptors)
-
-Routing: React Router DOM v6
-
-Styling: CSS Modules / Modern CSS3
-
-📂 Scalable Folder Structure
-
-The project follows a strict Model-View-Controller (MVC) pattern to ensure code clarity and scalability.
-
-backend/
+```bash
+TaskFlow-Scalable-Backend/
 ├── src/
-│   ├── config/         # Database connection & env configuration
-│   ├── controllers/    # Request handling logic
-│   ├── middlewares/    # Auth checks, Error handling, & Logging
-│   ├── models/         # Mongoose database schemas
-│   ├── routes/         # API route definitions
-│   ├── services/       # Business logic layer
-│   ├── utils/          # Helper functions (Token generation, etc.)
-│   └── server.js       # Application entry point
-
-
-🚀 Getting Started Locally
-
-Follow these steps to run the project on your local machine.
-
-Prerequisites
-
-Node.js (v14 or higher)
-
-MongoDB (Local or Atlas Connection String)
-
-Git
-
-1. Clone the Repository
-
-git clone [https://github.com/AnshWithTea/TaskFlow-Scalable-Backend.git](https://github.com/AnshWithTea/TaskFlow-Scalable-Backend.git)
-cd TaskFlow-Scalable-Backend
-
-
-2. Backend Setup
-
-cd backend
-npm install
-
-
-Create a .env file in the backend/ directory:
-
-PORT=5000
-MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/?appName=assignment
-JWT_SECRET=your_super_secret_key_123
-NODE_ENV=development
-
-
-(Note: If your MongoDB password has special characters like @, ensure they are URL encoded, e.g., %40).
-
-Start the Server:
-
-npm run dev
-
-
-3. Frontend Setup
-
-Open a new terminal window:
-
-cd ../frontend
-npm install
-
-
-Create a .env file in the frontend/ directory:
-
-VITE_API_URL=http://localhost:5000/api
-
-
-Start the UI:
-
-npm run dev
-
-
-Access the app at http://localhost:5173.
-
-🧪 API Endpoints
-
-The API is designed to be RESTful. You can test these using Postman or Thunder Client.
-
-Authentication
-
-Method
-
-Endpoint
-
-Description
-
-Access
-
-POST
-
-/api/auth/register
-
-Register a new user
-
-Public
-
-POST
-
-/api/auth/login
-
-Login & receive JWT
-
-Public
-
-Tasks
-
-Method
-
-Endpoint
-
-Description
-
-Access
-
-GET
-
-/api/tasks
-
-Get all tasks for logged-in user
-
-Private 🔒
-
-POST
-
-/api/tasks
-
-Create a new task
-
-Private 🔒
-
-PUT
-
-/api/tasks/:id
-
-Update a task
-
-Private 🔒
-
-DELETE
-
-/api/tasks/:id
-
-Delete a task
-
-Owner/Admin 🔒
-
-📈 Scalability & Performance
-
-This project includes a detailed analysis of how to scale for high-traffic scenarios, including:
-
-Horizontal Scaling: Load balancing across multiple Node.js instances.
-
-Database Optimization: Indexing strategies and Sharding.
-
-Caching: Implementation strategy for Redis to reduce database load.
-
-Microservices: Pathway to decouple the Auth and Task services.
-
-See SCALABILITY.md for the full report.
-
-👤 Author
-
-Ansh Vivek Kature
-
-Role: Backend Developer Intern Candidate
-
-Domain: AI, ML, & Full Stack Development
-
-Portfolio Projects: MedTrack, Pathfinder AI, Multilingual ASR
-
-GitHub: AnshWithTea
-
-Built with ❤️ for the Backend Developer Intern Assignment.
+│   ├── config/         # Database, Redis, and Env configurations
+│   ├── controllers/    # Request handlers (Input/Output logic)
+│   ├── services/       # Business logic layer (Reusable logic)
+│   ├── models/         # Mongoose Schemas (Data Layer)
+│   ├── routes/         # API Routes definitions
+│   ├── middlewares/    # Auth, Error Handling, Validation
+│   ├── utils/          # Helper functions (Logger, Response formatting)
+│   └── app.js          # Express App entry point
+├── tests/              # Unit and Integration tests
+├── .env.example        # Environment variable template
+├── Dockerfile          # Docker image configuration
+├── docker-compose.yml  # Container orchestration
+├── package.json        # Dependencies
+└── README.md           # Documentation
